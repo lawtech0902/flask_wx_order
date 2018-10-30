@@ -8,13 +8,15 @@ __date__ = '2018/10/24 8:42 PM'
 from flask import Flask
 from flask_script import Manager
 from flask_sqlalchemy import SQLAlchemy
+from common.libs.url_manager import UrlManager
 
 import os
 
 
 class Application(Flask):
-    def __init__(self, import_name):
-        super(Application, self).__init__(import_name)
+    def __init__(self, import_name, template_folder=None, root_path=None):
+        super(Application, self).__init__(import_name, template_folder=template_folder, root_path=root_path,
+                                          static_folder=None)
         self.config.from_pyfile('config/base_setting.py')
         if 'ops_config' in os.environ:
             self.config.from_pyfile('config/{}_setting.py'.format(os.environ['ops_config']))
@@ -22,5 +24,11 @@ class Application(Flask):
 
 
 db = SQLAlchemy()
-app = Application(__name__)
+app = Application(__name__, template_folder=os.getcwd() + "/web/templates/", root_path=os.getcwd())
 manager = Manager(app)
+
+'''
+函数模板 ，即py文件中的静态方法，可以在html模板中调用 (如/common/layout_user.html", line 9)
+'''
+app.add_template_global(UrlManager.buildStaticUrl, "buildStaticUrl")
+app.add_template_global(UrlManager.buildUrl, "buildUrl")
