@@ -23,4 +23,3 @@ app.register_blueprint(route_finance, url_prefix="/finance")
 app.register_blueprint(route_food, url_prefix="/food")
 app.register_blueprint(route_member, url_prefix="/member")
 app.register_blueprint(route_stat, url_prefix="/stat")
-
