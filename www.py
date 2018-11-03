@@ -6,6 +6,12 @@ HTTP模块相关初始化
 """
 
 from application import app
+
+"""统一拦截处理和统一错误处理"""
+from web.interceptors.auth_interceptor import *
+from web.interceptors.error_interceptor import *
+
+"""蓝图功能，对所有的url进行蓝图功能配置"""
 from web.controllers.index import route_index
 from web.controllers.user.user import route_user
 from web.controllers.account.account import route_account

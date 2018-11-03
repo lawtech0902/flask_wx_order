@@ -8,7 +8,6 @@ __date__ = '2018/10/24 8:42 PM'
 from flask import Flask
 from flask_script import Manager
 from flask_sqlalchemy import SQLAlchemy
-from common.libs.url_manager import UrlManager
 
 import os
 
@@ -30,5 +29,8 @@ manager = Manager(app)
 '''
 函数模板 ，即py文件中的静态方法，可以在html模板中调用 (如/common/layout_user.html", line 9)
 '''
+# 不要放在头部，避免循环引用问题
+from common.libs.url_manager import UrlManager
+
 app.add_template_global(UrlManager.buildStaticUrl, "buildStaticUrl")
 app.add_template_global(UrlManager.buildUrl, "buildUrl")

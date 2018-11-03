@@ -5,6 +5,10 @@ __date__ = '2018/10/27 3:14 PM'
 链接管理器
 """
 
+from application import app
+
+import time
+
 
 class UrlManager(object):
     def __init__(self):
@@ -16,6 +20,7 @@ class UrlManager(object):
 
     @staticmethod
     def buildStaticUrl(path):
-        ver = "%s" % (22222222)
+        release_version = app.config.get("RELEASE_VERSION")
+        ver = "{}".format(int(time.time())) if not release_version else release_version
         path = "/static" + path + "?ver=" + ver
         return UrlManager.buildUrl(path)

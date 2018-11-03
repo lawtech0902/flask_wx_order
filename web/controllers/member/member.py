@@ -4,26 +4,28 @@ __author__ = 'lawtech'
 __date__ = '2018/10/27 3:14 PM'
 """
 
-from flask import Blueprint, render_template
+from flask import Blueprint
+from common.libs.helper import ops_render
+
 
 route_member = Blueprint('member_page', __name__)
 
 
 @route_member.route("/index")
 def index():
-    return render_template("member/index.html")
+    return ops_render("member/index.html")
 
 
 @route_member.route("/info")
 def info():
-    return render_template("member/info.html")
+    return ops_render("member/info.html")
 
 
 @route_member.route("/set")
 def set():
-    return render_template("member/set.html")
+    return ops_render("member/set.html")
 
 
 @route_member.route("/comment")
 def comment():
-    return render_template("member/comment.html")
+    return ops_render("member/comment.html")
