@@ -11,7 +11,8 @@ AUTH_COOKIE_NAME = "mooc_food"
 
 # 过滤url
 IGNORE_URLS = [
-    "^/user/login"
+    "^/user/login",
+    "^/api"
 ]
 IGNORE_CHECK_LOGIN_URLS = [
     "^/static",
@@ -25,4 +26,10 @@ PAGE_DISPLAY = 10
 STATUS_MAPPING = {
     "1": "正常",
     "0": "删除"
+}
+
+# 小程序配置信息
+WX_APP = {
+    "app_id": "wx130f734f52af1c8a",
+    "app_secret": "be32ac383def210a0dbc0072142be8f1"
 }
